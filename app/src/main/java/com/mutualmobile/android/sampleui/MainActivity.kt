@@ -1,6 +1,7 @@
 package com.mutualmobile.android.sampleui
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.util.Log
@@ -23,6 +24,50 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         setContentView(R.layout.activity_main)
 
         initializeStackView()
+
+        changeProfile.setOnClickListener {
+            if (chipGroup.visibility == View.VISIBLE) {
+                chipGroup.visibility = View.GONE
+            } else {
+                chipGroup.visibility = View.VISIBLE
+            }
+        }
+
+        ContextCompat.getDrawable(this, R.drawable.ic_checked)?.let {
+            btn_selected.setDrawableForIdleMode(it)
+        }
+        ContextCompat.getDrawable(this, R.drawable.ic_white_check)?.let {
+            btn_selected.setDrawableForProgressMode(it)
+        }
+
+        btn_rejected.setIconColor(ContextCompat.getColor(this, R.color.red))
+
+        ContextCompat.getDrawable(this, R.drawable.ic_cancel)?.let {
+            btn_rejected.setDrawableForIdleMode(it)
+        }
+        ContextCompat.getDrawable(this, R.drawable.ic_white_cancel)?.let {
+            btn_rejected.setDrawableForProgressMode(it)
+        }
+
+        btn_reload.setIconColor(ContextCompat.getColor(this, R.color.colorReload))
+        btn_reload.showCircularBorder()
+
+        ContextCompat.getDrawable(this, R.drawable.ic_refresh)?.let {
+            btn_reload.setDrawableForIdleMode(it)
+        }
+        ContextCompat.getDrawable(this, R.drawable.ic_white_refresh)?.let {
+            btn_reload.setDrawableForProgressMode(it)
+        }
+
+        btn_save.setIconColor(ContextCompat.getColor(this, R.color.colorAccent))
+        btn_save.showCircularBorder()
+
+        ContextCompat.getDrawable(this, R.drawable.ic_save_profile)?.let {
+            btn_save.setDrawableForIdleMode(it)
+        }
+        ContextCompat.getDrawable(this, R.drawable.ic_white_save_profile)?.let {
+            btn_save.setDrawableForProgressMode(it)
+        }
     }
 
     private fun initializeStackView() {
@@ -50,10 +95,30 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
+        when (direction) {
+            Direction.Left -> {
+                btn_selected.updateRatio(0f)
+                btn_rejected.updateRatio(ratio)
+            }
+            Direction.Right -> {
+                btn_rejected.updateRatio(0f)
+                btn_selected.updateRatio(ratio)
+            }
+            Direction.Top -> {
+                btn_selected.updateRatio(0f)
+                btn_rejected.updateRatio(0f)
+            }
+            else -> {
+                btn_selected.updateRatio(0f)
+                btn_rejected.updateRatio(0f)
+            }
+        }
         logError("Card Dragged " + ratio + " Direction " + direction)
     }
 
     override fun onCardSwiped(direction: Direction?) {
+        btn_selected.updateRatio(0f)
+        btn_rejected.updateRatio(0f)
         logError("Card Swipped  Direction " + direction)
         if (direction == Direction.Bottom) {
             cardStackView.rewind()
@@ -62,6 +127,8 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
     override fun onCardCanceled() {
         logError("Card Cancelled Direction ")
+        btn_selected.updateRatio(0f)
+        btn_rejected.updateRatio(0f)
     }
 
     override fun onCardAppeared(view: View?, position: Int) {

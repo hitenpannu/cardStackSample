@@ -31,7 +31,7 @@ class ProfileStackAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val profile = profilePreviewList[position]
-        holder.name.text = "${profile.id}. ${profile.name}"
+        holder.name.text = profile.name
         holder.currentDesignationWithCompany.text = profile.getCurrentPosition()
         holder.itemView.setOnClickListener { v ->
             Toast.makeText(v.context, profile.name, Toast.LENGTH_SHORT).show()

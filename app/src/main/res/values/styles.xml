@@ -13,4 +13,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="ChipText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="ChipText.Bold" parent="ChipText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>
