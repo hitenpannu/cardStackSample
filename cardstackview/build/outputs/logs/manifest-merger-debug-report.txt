@@ -1,0 +1,37 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+	package
+		ADDED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:11-56
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+		ADDED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+	android:versionCode
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+		ADDED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml:3:1-58
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+uses-sdk
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+		ADDED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+		ADDED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
+		INJECTED from /Users/hitenderpannu/Downloads/SampleUi/cardstackview/src/main/AndroidManifest.xml
