@@ -11,5 +11,5 @@ public enum Direction {
 
     public static final List<Direction> HORIZONTAL = Arrays.asList(Direction.Left, Direction.Right);
     public static final List<Direction> VERTICAL = Arrays.asList(Direction.Top, Direction.Bottom);
-    public static final List<Direction> FREEDOM = Arrays.asList(Direction.values());
+    public static final List<Direction> FREEDOM = Arrays.asList(Direction.Top, Direction.Left, Direction.Right);
 }

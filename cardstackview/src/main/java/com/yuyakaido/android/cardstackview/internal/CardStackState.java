@@ -1,7 +1,6 @@
 package com.yuyakaido.android.cardstackview.internal;
 
 import android.support.v7.widget.RecyclerView;
-
 import com.yuyakaido.android.cardstackview.Direction;
 
 public class CardStackState {
