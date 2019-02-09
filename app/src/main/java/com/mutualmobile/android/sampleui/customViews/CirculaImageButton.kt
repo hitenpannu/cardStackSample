@@ -2,6 +2,7 @@ package com.mutualmobile.android.sampleui.customViews
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
@@ -24,6 +25,12 @@ class CirculaImageButton(context: Context, attributeSet: AttributeSet) : ImageBu
         this.isAntiAlias = true
         this.style = Paint.Style.FILL
         this.color = iconColor
+    }
+
+    private var whitePaint = Paint().apply {
+        this.isAntiAlias = true
+        this.style = Paint.Style.FILL
+        this.color = Color.WHITE
     }
 
     private var borderPaint = Paint().apply {
@@ -63,9 +70,10 @@ class CirculaImageButton(context: Context, attributeSet: AttributeSet) : ImageBu
 
     override fun onDraw(canvas: Canvas?) {
         val radius = min(width, height).div(2) * ratio
+        val actualRadius = min(width - (paddingLeft + paddingRight), height - (paddingTop + paddingBottom)).div(2f)
+        canvas?.drawCircle(width.div(2f), height.div(2f), min(width-paddingLeft,height-paddingTop)/ 2f, whitePaint)
         canvas?.drawCircle(width.div(2f), height.div(2f), radius, backgroundPaint)
-        if (drawBorder) {
-            val actualRadius = min(width - (paddingLeft + paddingRight), height - (paddingTop + paddingBottom)).div(2f)
+        if (ratio <= 0f) {
             canvas?.drawCircle(width.div(2f), height.div(2f), actualRadius, borderPaint)
         }
         super.onDraw(canvas)

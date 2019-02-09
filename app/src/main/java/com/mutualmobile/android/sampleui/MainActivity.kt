@@ -12,6 +12,9 @@ import com.yuyakaido.android.cardstackview.Direction
 import com.yuyakaido.android.cardstackview.StackFrom
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.layout_bottom_action_buttons.*
+import kotlinx.android.synthetic.main.layout_job_profile.*
+import kotlinx.android.synthetic.main.view_job_profile_selection_min.*
 import java.util.*
 
 class MainActivity : AppCompatActivity(), CardStackListener {
@@ -47,16 +50,6 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         }
         ContextCompat.getDrawable(this, R.drawable.ic_white_cancel)?.let {
             btn_rejected.setDrawableForProgressMode(it)
-        }
-
-        btn_reload.setIconColor(ContextCompat.getColor(this, R.color.colorReload))
-        btn_reload.showCircularBorder()
-
-        ContextCompat.getDrawable(this, R.drawable.ic_refresh)?.let {
-            btn_reload.setDrawableForIdleMode(it)
-        }
-        ContextCompat.getDrawable(this, R.drawable.ic_white_refresh)?.let {
-            btn_reload.setDrawableForProgressMode(it)
         }
 
         btn_save.setIconColor(ContextCompat.getColor(this, R.color.colorAccent))
@@ -99,16 +92,20 @@ class MainActivity : AppCompatActivity(), CardStackListener {
             Direction.Left -> {
                 btn_selected.updateRatio(0f)
                 btn_rejected.updateRatio(ratio)
+                btn_save.updateRatio(0f)
             }
             Direction.Right -> {
                 btn_rejected.updateRatio(0f)
                 btn_selected.updateRatio(ratio)
+                btn_save.updateRatio(0f)
             }
             Direction.Top -> {
+                btn_save.updateRatio(newRatio = ratio)
                 btn_selected.updateRatio(0f)
                 btn_rejected.updateRatio(0f)
             }
             else -> {
+                btn_save.updateRatio(0f)
                 btn_selected.updateRatio(0f)
                 btn_rejected.updateRatio(0f)
             }
@@ -119,6 +116,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     override fun onCardSwiped(direction: Direction?) {
         btn_selected.updateRatio(0f)
         btn_rejected.updateRatio(0f)
+        btn_save.updateRatio(0f)
         logError("Card Swipped  Direction " + direction)
         if (direction == Direction.Bottom) {
             cardStackView.rewind()
@@ -129,6 +127,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         logError("Card Cancelled Direction ")
         btn_selected.updateRatio(0f)
         btn_rejected.updateRatio(0f)
+        btn_save.updateRatio(0f)
     }
 
     override fun onCardAppeared(view: View?, position: Int) {
