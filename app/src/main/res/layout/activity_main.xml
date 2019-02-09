@@ -1,93 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#efeff4"
         android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <com.mutualmobile.android.sampleui.BackgroundIntersectedView
+    <LinearLayout
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="400dp"/>
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+    >
+
+        <ImageButton
+                app:srcCompat="@drawable/ic_left_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless"
+        />
+
+        <TextView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:text="Workruit"
+                android:textColor="#fff"
+                android:padding="16dp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:letterSpacing="0.3"
+                android:layout_height="wrap_content"/>
+
+        <ImageButton
+                app:srcCompat="@drawable/ic_magnifying_glass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.Button.Borderless"
+        />
+    </LinearLayout>
 
     <RelativeLayout
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_below="@+id/toolbar"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:animateLayoutChanges="true"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:paddingTop="72dp"
+            android:paddingBottom="134dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            tools:context=".MainActivity">
 
-
-        <LinearLayout
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-
-            <ImageButton
-                    app:srcCompat="@drawable/ic_left_arrow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-            />
-
-            <TextView
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:text="Workruit"
-                    android:textColor="#fff"
-                    android:padding="16dp"
-                    android:textStyle="bold"
-                    android:textAllCaps="true"
-                    android:textSize="16sp"
-                    android:textAlignment="center"
-                    android:letterSpacing="0.3"
-                    android:layout_height="wrap_content"/>
-
-            <ImageButton
-                    app:srcCompat="@drawable/ic_magnifying_glass"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-            />
-        </LinearLayout>
-
-        <include
-                android:layout_below="@+id/toolbar"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                layout="@layout/layout_job_profile"
-                android:id="@+id/job_profile"
-        />
-
-        <RelativeLayout
-                android:layout_below="@+id/job_profile"
+        <com.yuyakaido.android.cardstackview.CardStackView
+                android:id="@+id/cardStackView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:paddingLeft="32dp"
-                android:paddingRight="32dp"
-                android:paddingTop="40dp"
-                android:paddingBottom="62dp"
-                android:clipToPadding="false"
-                android:clipChildren="false"
-                tools:context=".MainActivity">
-
-            <com.yuyakaido.android.cardstackview.CardStackView
-                    android:id="@+id/cardStackView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-            />
-
-        </RelativeLayout>
-
-        <include
-                layout="@layout/layout_bottom_action_buttons"
-                android:id="@+id/btn_group_bottom_actions"
-                android:layout_marginBottom="22dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
         />
+
     </RelativeLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+    <include
+            layout="@layout/layout_bottom_action_buttons"
+            android:id="@+id/btn_group_bottom_actions"
+            android:layout_marginBottom="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+    />
+
+    <View
+            android:id="@+id/shadow_drop_down"
+            android:layout_width="match_parent"
+            android:background="#bb444444"
+            android:alpha="1"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_height="0dp"/>
+
+    <com.mutualmobile.android.sampleui.customViews.JobProfileSelectionDropDown
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/job_profile_selection"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+    />
+
+
+</android.support.constraint.ConstraintLayout>

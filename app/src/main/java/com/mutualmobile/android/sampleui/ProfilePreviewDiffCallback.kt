@@ -1,6 +1,7 @@
 package com.mutualmobile.android.sampleui
 
 import android.support.v7.util.DiffUtil
+import com.mutualmobile.android.sampleui.models.ProfilePreview
 
 class ProfilePreviewDiffCallback(
     private val old: List<ProfilePreview>,

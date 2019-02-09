@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.mutualmobile.android.sampleui.models.ProfilePreview
 
 class ProfileStackAdapter(
     private val profilePreviewList: MutableList<ProfilePreview> = mutableListOf()

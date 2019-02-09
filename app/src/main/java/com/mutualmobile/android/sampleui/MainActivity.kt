@@ -6,21 +6,23 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DefaultItemAnimator
 import android.util.Log
 import android.view.View
+import com.mutualmobile.android.sampleui.customViews.JobProfileSelectionDropDown
+import com.mutualmobile.android.sampleui.models.createDummyProfiles
+import com.mutualmobile.android.sampleui.models.getJobProfiles
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
 import com.yuyakaido.android.cardstackview.StackFrom
-
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_bottom_action_buttons.*
-import kotlinx.android.synthetic.main.layout_job_profile.*
-import kotlinx.android.synthetic.main.view_job_profile_selection_min.*
-import java.util.*
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity(), CardStackListener {
 
     private val manager by lazy { CardStackLayoutManager(this, this) }
-    private val stackAdapter by lazy { ProfileStackAdapter(createSpots().toMutableList()) }
+    private val stackAdapter by lazy { ProfileStackAdapter(createDummyProfiles().toMutableList()) }
+    private val jobProfileDropDown by lazy { findViewById<JobProfileSelectionDropDown>(R.id.job_profile_selection) }
+    private val dropDownShadow by lazy { findViewById<View>(R.id.shadow_drop_down) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +30,19 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
         initializeStackView()
 
-        changeProfile.setOnClickListener {
-            if (chipGroup.visibility == View.VISIBLE) {
-                chipGroup.visibility = View.GONE
-            } else {
-                chipGroup.visibility = View.VISIBLE
+        jobProfileDropDown.setDropDrownListener(object : JobProfileSelectionDropDown.Companion.DropDownContract {
+            override fun onDropDownClose() {
+                dropDownShadow.visibility = View.GONE
             }
+
+            override fun onDropDownOpen() {
+                dropDownShadow.visibility = View.VISIBLE
+            }
+        })
+
+        getJobProfiles().let {
+            jobProfileDropDown.setSelectedProfile(it.get(Random(0).nextInt(it.size)))
+            jobProfileDropDown.setAvailableProfiles(it)
         }
 
         ContextCompat.getDrawable(this, R.drawable.ic_checked)?.let {
@@ -61,10 +70,12 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         ContextCompat.getDrawable(this, R.drawable.ic_white_save_profile)?.let {
             btn_save.setDrawableForProgressMode(it)
         }
+
+
     }
 
     private fun initializeStackView() {
-        manager.setStackFrom(StackFrom.Top)
+        manager.setStackFrom(StackFrom.Bottom)
         manager.setVisibleCount(3)
         manager.setTranslationInterval(8.0f)
         manager.setScaleInterval(0.95f)
@@ -138,92 +149,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         logError("Card Dragged rewound")
     }
 
-
     private fun logError(message: String) {
         Log.e("STACK_LISTENER", message)
     }
-
-    private fun getExperience(): List<Experience> {
-        return listOf(
-            Experience(
-                companyName = "Digi World",
-                designation = "Sales & BD Executive",
-                startingDate = Date().apply { this.time = System.currentTimeMillis().minus(100 * 1000) },
-                endingDate = null
-            )
-        )
-    }
-
-    private fun getEducation(): List<Education> {
-        return listOf(
-            Education(
-                authority = "St. Paul's University",
-                course = "M.B.A- Mass Comm & Sales",
-                startingDate = Date().apply {
-                    this.time = System.currentTimeMillis().minus(100 * 1000)
-                    this.time -= time - 40000
-                },
-                endingDate = Date().apply { this.time = System.currentTimeMillis().minus(100 * 1000) }
-            )
-        )
-    }
-
-    private fun createSpots(): List<ProfilePreview> {
-        val sampleProfiles = ArrayList<ProfilePreview>()
-        sampleProfiles.add(
-            ProfilePreview(
-                id = 0,
-                name = "Yasaka Shrine",
-                currentLocation = "Kyoto",
-                profilePic = "",
-                expectedMinPackage = 300000,
-                expectedMaxPackage = 600000,
-                isInterestedInJob = true,
-                education = getEducation(),
-                experiences = getExperience()
-            )
-        )
-        sampleProfiles.add(
-            ProfilePreview(
-                id = 1,
-                name = "Hitender Pannu",
-                currentLocation = "Hyderabad",
-                profilePic = "",
-                expectedMinPackage = 800000,
-                expectedMaxPackage = 1100000,
-                isInterestedInJob = false,
-                education = getEducation(),
-                experiences = getExperience()
-            )
-        )
-        sampleProfiles.add(
-            ProfilePreview(
-                id = 2,
-                name = "Niharika Chaudhary",
-                currentLocation = "Chandigarh",
-                profilePic = "",
-                expectedMinPackage = 1100000,
-                expectedMaxPackage = 1400000,
-                isInterestedInJob = false,
-                education = getEducation(),
-                experiences = getExperience()
-            )
-        )
-        sampleProfiles.add(
-            ProfilePreview(
-                id = 2,
-                name = "Niviea Chaudhary",
-                currentLocation = "Una",
-                profilePic = "",
-                expectedMinPackage = 200000,
-                expectedMaxPackage = 500000,
-                isInterestedInJob = false,
-                education = getEducation(),
-                experiences = getExperience()
-            )
-        )
-        return sampleProfiles
-    }
-
-
 }
