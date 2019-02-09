@@ -40,6 +40,10 @@ class MainActivity : AppCompatActivity(), CardStackListener {
             }
         })
 
+        dropDownShadow.setOnClickListener {
+            jobProfileDropDown?.closeDropDown()
+        }
+
         getJobProfiles().let {
             jobProfileDropDown.setSelectedProfile(it.get(Random(0).nextInt(it.size)))
             jobProfileDropDown.setAvailableProfiles(it)

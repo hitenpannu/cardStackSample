@@ -50,7 +50,7 @@ class JobProfileSelectionDropDown(context: Context, attributeSet: AttributeSet) 
         dropDownContract?.onDropDownOpen()
     }
 
-    private fun closeDropDown() {
+    fun closeDropDown() {
         changeProfileButton?.rotation = 0f
         jobProfileDropDown?.visibility = View.GONE
         separator?.visibility = View.GONE

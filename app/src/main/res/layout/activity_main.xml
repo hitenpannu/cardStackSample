@@ -21,6 +21,8 @@
                 app:srcCompat="@drawable/ic_left_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingRight="24dp"
+                android:minWidth="0dp"
                 style="@style/Widget.AppCompat.Button.Borderless"
         />
 
@@ -38,9 +40,11 @@
                 android:layout_height="wrap_content"/>
 
         <ImageButton
-                app:srcCompat="@drawable/ic_magnifying_glass"
+                app:srcCompat="@drawable/ic_controls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="24dp"
+                android:minWidth="0dp"
                 style="@style/Widget.AppCompat.Button.Borderless"
         />
     </LinearLayout>
@@ -88,6 +92,7 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:layout_constraintBottom_toBottomOf="parent"
             android:clickable="true"
+            android:visibility="gone"
             android:focusable="true"
             android:layout_height="0dp"/>
 
